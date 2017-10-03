@@ -1,47 +1,48 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :update, :destroy]
 
-  # GET /appointments
+  # GET /api/:patient_id/appointments
   def index
     @patient = Patient.find(params[:patient_id]) 
+    # :include allows nested associations
     @appointments = @patient.appointments.to_json(:include => {:patient => {:only => :name}, :doctor => {}})
 
     render json: @appointments
   end
 
-  # GET /appointments/1
+  # GET /api/:patient_id/appointments/:id
   def show
     @patient = Patient.find(params[:patient_id])
-    @appointment = @patient.appointments.find(params[:id]).to_json(:include => [:patient, :doctor])
+    @appointment = @patient.appointments.find(params[:id]).to_json(:include => {:patient => {:only => :name}, :doctor => {}})
 
     render json: @appointment
   end
 
   # POST /appointments
-  def create
-    @patient = Patient.find(params[:patient_id])
-    @appointment = @patient.appointments.new(appointment_params)
+  # def create
+    # @patient = Patient.find(params[:patient_id])
+    # @appointment = @patient.appointments.new(appointment_params)
 
-    if @appointment.save
-      render json: @appointment, status: :created, location: @appointment
-    else
-      render json: @appointment.errors, status: :unprocessable_entity
-    end
-  end
+    # if @appointment.save
+      # render json: @appointment, status: :created, location: @appointment
+    # else
+      # render json: @appointment.errors, status: :unprocessable_entity
+    # end
+  # end
 
   # PATCH/PUT /appointments/1
-  def update
-    if @appointment.update(appointment_params)
-      render json: @appointment
-    else
-      render json: @appointment.errors, status: :unprocessable_entity
-    end
-  end
+  # def update
+    # if @appointment.update(appointment_params)
+      # render json: @appointment
+    # else
+      # render json: @appointment.errors, status: :unprocessable_entity
+    # end
+  # end
 
   # DELETE /appointments/1
-  def destroy
-    @appointment.destroy
-  end
+  # def destroy
+    # @appointment.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

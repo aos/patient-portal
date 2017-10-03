@@ -21,7 +21,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Prescriptions</a>
+          <a class="nav-link" href="#">Medications</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Medical Records</a>
@@ -36,27 +36,31 @@
   <!-- Patient information -->
 
   <div class="card">
-    <h4 class="card-header text-center">Mike ROSS</h4>
+    <h4 id="patient-name" class="card-header text-center">Mike ROSS</h4>
     <div class="card-body">
       <div class="container">
         <div class="row">
           <div class="col">
-            <div class="card">
-              <img src="assets/images/profile.jpeg" class="rounded-circle">
-            </div>
+            <img src="assets/images/profile.jpeg" class="rounded-circle">
           </div>
           <div class="col">
             <p><b>Home address</b></p>
-            <p>5 Marcus Street Leeds
+            <p>5 Marcus Street</p>
+            <p>Raytown, MO 64138</p>
             </p>
           </div>
           <div class="col">
             <p><b>Contact</b></p>
-            <p>Mobile: 555 123 4567 Home: 555 123 4567 Work: 555 123 4567 Email: ms123@gmail.com</p>
+            <p>Mobile: 555 123 4567
+              <p>Home: 555 123 4567</p>
+              <p>Work: 555 123 4567</p>
+              <p>Email: ms123@gmail.com</p>
           </div>
           <div class="col">
             <p><b>Date of birth</b></p>
             <p>23 March 1970</p>
+            <p><b>Insurance number</b></p>
+            <p>123-456-78904</p>
           </div>
         </div>
       </div>
@@ -65,6 +69,7 @@
 
   <!-- APPOINTMENTS -->
   <div class="container">
+    <br>
     <h4 class="h4">Upcoming Appointments</h4>
     <div class="row">
       <div class="col-5">
@@ -74,11 +79,18 @@
           <a class="list-group-item list-group-item-action" id="list-app3-list" data-toggle="list" href="#list-app3"></a>
         </div>
       </div>
-      <div class="col-7">
+      <div class="col-4">
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="list-app1" role="tabpanel" aria-labelledby="list-app1-list">...</div>
           <div class="tab-pane fade" id="list-app2" role="tabpanel" aria-labelledby="list-app2-list">...</div>
           <div class="tab-pane fade" id="list-app3" role="tabpanel" aria-labelledby="list-app3-list">...</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="btn-group-vertical">
+          <a href="#" class="btn btn-success">Request a Referral</a>
+          <a href="#" class="btn btn-warning">Refill Medication</a>
+          <a href="#" class="btn btn-info">Messages <span class="badge badge-danger">4</span></a>
         </div>
       </div>
     </div>
