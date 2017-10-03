@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  $.getJSON("/api/patients/11/appointments")
+  $.getJSON("/api/patients/1/appointments")
     .done(function (data) {
       $(function () {
         $('[data-toggle="popover"]').popover({
