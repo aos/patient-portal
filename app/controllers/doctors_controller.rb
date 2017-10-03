@@ -13,38 +13,12 @@ class DoctorsController < ApplicationController
     render json: @doctor
   end
 
-  # POST /doctors
-  def create
-    @doctor = Doctor.new(doctor_params)
-
-    if @doctor.save
-      render json: @doctor, status: :created, location: @doctor
-    else
-      render json: @doctor.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /doctors/1
-  def update
-    if @doctor.update(doctor_params)
-      render json: @doctor
-    else
-      render json: @doctor.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /doctors/1
-  def destroy
-    @doctor.destroy
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Modularized "Find doctor"
     def set_doctor
       @doctor = Doctor.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def doctor_params
       params.require(:doctor).permit(:name, :specialty, :education)
     end

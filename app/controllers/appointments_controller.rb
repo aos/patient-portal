@@ -1,9 +1,9 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: [:show, :update, :destroy]
+  # Used before all /appointments/
+  before_action :set_patient
 
   # GET /api/:patient_id/appointments
   def index
-    @patient = Patient.find(params[:patient_id]) 
     # :include allows nested associations
     @appointments = @patient.appointments.to_json(:include => {:patient => {:only => :name}, :doctor => {}})
 
@@ -12,7 +12,6 @@ class AppointmentsController < ApplicationController
 
   # GET /api/:patient_id/appointments/:id
   def show
-    @patient = Patient.find(params[:patient_id])
     @appointment = @patient.appointments.find(params[:id]).to_json(:include => {:patient => {:only => :name}, :doctor => {}})
 
     render json: @appointment
@@ -20,7 +19,6 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments
   # def create
-    # @patient = Patient.find(params[:patient_id])
     # @appointment = @patient.appointments.new(appointment_params)
 
     # if @appointment.save
@@ -30,27 +28,12 @@ class AppointmentsController < ApplicationController
     # end
   # end
 
-  # PATCH/PUT /appointments/1
-  # def update
-    # if @appointment.update(appointment_params)
-      # render json: @appointment
-    # else
-      # render json: @appointment.errors, status: :unprocessable_entity
-    # end
-  # end
-
-  # DELETE /appointments/1
-  # def destroy
-    # @appointment.destroy
-  # end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_appointment
-      @appointment = Appointment.find(params[:id])
+    # Find patient
+    def set_patient
+      @patient = Patient.find(params[:patient_id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def appointment_params
       params.require(:appointment).permit(:patient_id, :doctor_id, :start, :end, :symptoms)
     end
