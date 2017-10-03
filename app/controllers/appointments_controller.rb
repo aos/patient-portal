@@ -1,18 +1,18 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :update, :destroy]
 
-  # GET /appointments -- all appointments for a particular patient
+  # GET /appointments
   def index
     @patient = Patient.find(params[:patient_id]) 
-    @appointments = @patient.appointments.all
+    @appointments = @patient.appointments.to_json(:include => {:patient => {:only => :name}, :doctor => {}})
 
     render json: @appointments
   end
 
-  # GET /appointments/1 -- per appointment
+  # GET /appointments/1
   def show
     @patient = Patient.find(params[:patient_id])
-    @appointment = @patient.appointments.find(params[:appointment_id])
+    @appointment = @patient.appointments.find(params[:id]).to_json(:include => [:patient, :doctor])
 
     render json: @appointment
   end

@@ -20,12 +20,14 @@ doctors = Doctor.create([
   },
   {
     name: 'Shoara Vind', specialty: 'Psychiatry', education: 'Medical School: SUSOM, Residency: Psychiatry, Fellowship in Substance Abuse'
-  }])
+  }
+])
 
 patient.appointments.create([
   {start: Time.now.to_datetime, end: Time.now.to_datetime.end_of_day, symptoms: 'lump on back', doctor: doctors[1]},
   {start: Time.now.to_datetime, end: Time.now.to_datetime.end_of_day, symptoms: 'runny nose, cough', doctor: doctors[0]},
-  {start: Time.now.to_datetime, end: Time.now.to_datetime.end_of_day, symptoms: 'fatigue, no motivation', doctor: doctors[2]}])
+  {start: Time.now.to_datetime, end: Time.now.to_datetime.end_of_day, symptoms: 'fatigue, no motivation', doctor: doctors[2]}
+])
 
 # patient.each do |patient|
   # patient.appointments.create!([{start: Time.now.to_datetime, end: Time.now.to_datetime.end_of_day, symptoms: 'runny nose, cough', doctor: doctor[0]}])
